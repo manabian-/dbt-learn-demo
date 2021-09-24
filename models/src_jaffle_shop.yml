@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: raw
+    tables:
+      - name: customers
+      - name: orders
+        description: "One record per order at my jaffle shop"
+        loader: fivetran
+        loaded_at_field: _etl_loaded_at
+        freshness:
+          warn_after: {period: hour, count: 12}
+          error_after: {period: day, count: 2}
+        columns:
+          - name: id
+            tests:
+              - unique
+              - not_null

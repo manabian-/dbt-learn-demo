@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: customers
+    description: "It's really cool"
+    columns:
+      - name: customer_id
+        description: "Primary key for this table"
+        tests:
+          - unique
+          - not_null
